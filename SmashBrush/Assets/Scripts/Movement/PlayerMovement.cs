@@ -8,14 +8,14 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement attributs")]
     public float _acceleration = 0.2f;
     public float _maxSpeed = 3f;
-    public float _dampFactor = 0.1f;
+    public float _dampFactor = 0.9f;
 
     private float _gravityAcceleration = 0.1f;
     private float _gravity = 20f;
 
     public bool _isFacingLeft;
-    private bool _isJumping;
-    private bool _jumpCanceled;
+
+    private byte _jumpCount = 0;
 
     private Vector2 _velocity = Vector2.zero;
     private Vector2 _direction = Vector2.zero;
@@ -25,20 +25,15 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
-
-        _isJumping = false;
     }
 
     private void Update()
     {
         Move();
+
         if (!IsGrounded())
         {
             _velocity.y -= _gravityAcceleration;
-        }
-        else if (!IsGrounded() && _jumpCanceled)
-        {
-            _velocity.y -= _gravityAcceleration * 10;
         }
     }
 
@@ -69,24 +64,25 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            _velocity.x *= 1 - _dampFactor;
+            _velocity.x *= _dampFactor;
         }
     }
 
     public void Jump()
     {
-        if (IsGrounded() && !_isJumping) 
+        if (_jumpCount < 2) 
         {
-            _isJumping = true;
-            _velocity.y = _gravity; 
+            _jumpCount++;
+
+            _velocity.y = _gravity;
         }
     }
 
     public void CancelJump()
     {
-        if (_isJumping)
+        if (_velocity.y > 0)
         {
-            _jumpCanceled = true;
+            _velocity.y = 0;
         }
     }
 
@@ -97,8 +93,7 @@ public class PlayerMovement : MonoBehaviour
             if (_velocity.y < 0)
             {
                 _velocity.y = 0;
-                _isJumping = false;
-                _jumpCanceled = false;
+                _jumpCount = 0;
             }
 
             return true;
