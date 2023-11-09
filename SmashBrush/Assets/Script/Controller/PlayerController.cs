@@ -7,20 +7,26 @@ public class PlayerController : MonoBehaviour
 
     public void OnMoveCharacter(InputAction.CallbackContext context)
     {
-        Debug.Log("move");
         if (context.performed)
         {
-            Debug.Log(context.ReadValue<Vector2>());
-            _playerMovement.Move(context.ReadValue<Vector2>());
+            _playerMovement.SetDirection(context.ReadValue<Vector2>());
+            _playerMovement._isFacingLeft = context.ReadValue<Vector2>().x < 0 ? true : false;
         }
         else
         {
-            _playerMovement.Move(Vector2.zero);
+            _playerMovement.SetDirection(Vector2.zero);
         }
     }
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        Debug.Log("jump");
+        if (context.started)
+        {
+            _playerMovement.Jump();
+        }
+        else
+        {
+
+        }
     }
 }

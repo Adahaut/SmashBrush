@@ -1,44 +1,44 @@
 {
-    "name": "Player",
+    "name": "PlayerController",
     "maps": [
         {
             "name": "Player",
-            "id": "b2272af3-0739-4b51-8518-6d7dc6849570",
+            "id": "fa667bf4-7a22-4ff3-8c5c-7966f31cce99",
             "actions": [
-                {
-                    "name": "Movement",
-                    "type": "Value",
-                    "id": "e297f035-701b-491d-b1e1-6fe2e65cbb93",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
                 {
                     "name": "Jump",
                     "type": "Button",
-                    "id": "11510515-035a-41ec-ad3c-7d29f44176ec",
+                    "id": "51419f10-a55b-436e-8667-e99d8bf88dea",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Movement",
+                    "type": "Value",
+                    "id": "dda25e9c-c133-464a-85a9-377185a6cced",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
                 {
                     "name": "",
-                    "id": "7267528b-c69e-4df3-b784-6f2fd891b2e2",
+                    "id": "aa53f582-2711-414b-9f57-744261adf891",
                     "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Player",
+                    "groups": "",
                     "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "2D Vector",
-                    "id": "1490488d-2a6f-4468-95ec-517033fe1067",
+                    "id": "f9b9fe48-c7ab-4ccd-8718-677e63479a03",
                     "path": "2DVector",
                     "interactions": "",
                     "processors": "",
@@ -49,22 +49,22 @@
                 },
                 {
                     "name": "left",
-                    "id": "ab967099-6696-4499-a09e-160547b783e3",
-                    "path": "<Keyboard>/q",
+                    "id": "ef57b57c-5fca-42ed-8f1e-d805620eff9e",
+                    "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Player",
+                    "groups": "",
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "right",
-                    "id": "11edf4c0-1a59-4fc3-8134-c512f3f77351",
+                    "id": "ac718462-feca-41fb-bc68-e0c39527852b",
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Player",
+                    "groups": "",
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -72,11 +72,5 @@
             ]
         }
     ],
-    "controlSchemes": [
-        {
-            "name": "Player",
-            "bindingGroup": "Player",
-            "devices": []
-        }
-    ]
+    "controlSchemes": []
 }
