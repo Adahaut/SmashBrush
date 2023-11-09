@@ -12,10 +12,11 @@ public class PlayerMovement : MonoBehaviour
 
     private float _gravityAcceleration = 0.1f;
     private float _gravity = 20f;
+    private float _jumpTime = 0;
+    private float _jumpCancelTime = 0;
 
     public bool _isFacingLeft;
     private bool _isJumping;
-    private bool _jumpCanceled;
 
     private Vector2 _velocity = Vector2.zero;
     private Vector2 _direction = Vector2.zero;
@@ -35,10 +36,6 @@ public class PlayerMovement : MonoBehaviour
         if (!IsGrounded())
         {
             _velocity.y -= _gravityAcceleration;
-        }
-        else if (!IsGrounded() && _jumpCanceled)
-        {
-            _velocity.y -= _gravityAcceleration * 10;
         }
     }
 
@@ -75,19 +72,16 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump()
     {
-        if (IsGrounded() && !_isJumping) 
+        if (IsGrounded()) 
         {
-            _isJumping = true;
             _velocity.y = _gravity; 
+            _jumpTime = Time.time;
         }
     }
 
     public void CancelJump()
     {
-        if (_isJumping)
-        {
-            _jumpCanceled = true;
-        }
+        _jumpCancelTime = Time.time;
     }
 
     public bool IsGrounded()
@@ -97,8 +91,6 @@ public class PlayerMovement : MonoBehaviour
             if (_velocity.y < 0)
             {
                 _velocity.y = 0;
-                _isJumping = false;
-                _jumpCanceled = false;
             }
 
             return true;

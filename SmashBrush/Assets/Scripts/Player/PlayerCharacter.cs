@@ -1,5 +1,8 @@
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 public class PlayerCharacter : MonoBehaviour
 {
@@ -13,20 +16,15 @@ public class PlayerCharacter : MonoBehaviour
         _myTransform = transform;
         _coolDown = 0f;
     }
-
-    public void OnAttackFistPunch(InputAction.CallbackContext ctx)
+    private void Update()
     {
-        if (Time.time > _coolDown && ctx.started)
+        if (Input.GetKeyDown(KeyCode.Space) && Time.time > _coolDown)
         {
             FistPunch fistPunch = new(_myTransform.position);
             fistPunch.Execute();
             _coolDown = Time.time + fistPunch.GetSpeed();
         }
-    }
-
-    public void OnAttackFeetPunch(InputAction.CallbackContext ctx)
-    {
-        if (Time.time > _coolDown && ctx.started)
+        else if (Input.GetKeyDown(KeyCode.LeftShift) && Time.time > _coolDown)
         {
             FeetPunch feetPunch = new(_myTransform.position);
             feetPunch.Execute();
