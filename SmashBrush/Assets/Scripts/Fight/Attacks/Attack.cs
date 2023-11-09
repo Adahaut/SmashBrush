@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Attack 
+public abstract class Attack : MonoBehaviour
 {
     protected int m_damage;
     protected float m_range;
     protected float m_speed;
     protected float m_recoil;
     protected float m_stun;
-    protected CapsuleCollider m_collider;
+    protected Vector3 m_position;
+    protected bool m_doingAction = false;
 
     public int GetDamage()
     {
@@ -35,6 +36,8 @@ public abstract class Attack
 
     public virtual void AttackEnnemi(PlayerCharacter enemy)
     {
-        enemy.m_life -= m_damage;
+        Debug.Log("Attack : " + m_damage + " damage");
+        enemy._percent += m_damage;
+        return;
     }
 }
