@@ -215,6 +215,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+
 --- !u!1 &474418712
 GameObject:
   m_ObjectHideFlags: 0
@@ -345,6 +346,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 25.536589, z: 3.569809}
   m_Center: {x: 0, y: 7.737218, z: -0.19591585}
+
 --- !u!1 &1522398668
 GameObject:
   m_ObjectHideFlags: 0
@@ -463,6 +465,7 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+
 --- !u!1 &1571792883
 GameObject:
   m_ObjectHideFlags: 0
@@ -640,12 +643,14 @@ BoxCollider:
   m_Center: {x: 0, y: 7.737218, z: -0.19591585}
 --- !u!4 &1902280238
 Transform:
+
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1902280236}
   serializedVersion: 2
+
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 31.5, y: 3.2751617, z: 18.65}
   m_LocalScale: {x: 1, y: 1, z: 0.79114}
@@ -706,14 +711,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1571792886}
+  - {fileID: 1900002048}
   - {fileID: 1522398670}
   - {fileID: 78663244}
+
   - {fileID: 474418714}
   - {fileID: 509272848}
   - {fileID: 1993703896}
   - {fileID: 1902280238}
+
