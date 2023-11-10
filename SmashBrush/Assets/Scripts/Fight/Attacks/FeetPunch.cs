@@ -20,14 +20,13 @@ public class FeetPunch : Attack
         RaycastHit hit;
         if (Physics.Raycast(m_position, Vector3.right, out hit, m_range))
         {
+            Debug.Log("a");
+
             if (hit.transform.tag == "Player")
             {
                 AttackEnnemi(hit.transform.GetComponent<PlayerCharacter>());
-                return;
             }
-            else { return; }
         }
-        else { return; }
     }
 
 }

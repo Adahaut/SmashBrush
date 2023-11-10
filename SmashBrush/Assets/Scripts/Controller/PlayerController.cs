@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -5,6 +6,14 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private PlayerMovement _playerMovement;
 
+    private Transform _myTransform;
+    private float _coolDown;
+
+    private void Awake()
+    {
+        _myTransform = transform;
+        _coolDown = 0f;
+    }
     public void OnMoveCharacter(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -27,6 +36,26 @@ public class PlayerController : MonoBehaviour
         else
         {
 
+        }
+    }
+
+    public void OnFistPunch(InputAction.CallbackContext ctx)
+    {
+        if (ctx.started && Time.time > _coolDown)
+        {
+            FistPunch fistPunch = new(_myTransform.position);
+            fistPunch.Execute();
+            _coolDown = Time.time + fistPunch.GetSpeed();
+        }
+    }
+
+    public void OnFeetPunch(InputAction.CallbackContext ctx)
+    {
+        if (ctx.started && Time.time > _coolDown)
+        {
+            FeetPunch feetPunch = new(_myTransform.position);
+            feetPunch.Execute();
+            _coolDown = Time.time + feetPunch.GetSpeed();
         }
     }
 }
