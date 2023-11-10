@@ -10,8 +10,7 @@ public abstract class Attack
     protected float m_recoil;
     protected float m_stun;
     protected Vector3 m_position;
-    protected bool m_doingAction = false;
-
+    protected bool m_direction;
     public int GetDamage()
     {
         return m_damage;
@@ -38,6 +37,7 @@ public abstract class Attack
     {
         Debug.Log("Attack : " + m_damage + " damage");
         enemy._percent += m_damage;
+        enemy.GetComponentInParent<PlayerMovement>()._velocity.x = m_direction ? -m_recoil : m_recoil;
         return;
     }
 }

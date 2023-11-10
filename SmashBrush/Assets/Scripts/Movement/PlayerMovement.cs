@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
 
     private byte _jumpCount = 0;
 
-    private Vector2 _velocity = Vector2.zero;
+    public Vector2 _velocity = Vector2.zero;
     private Vector2 _direction = Vector2.zero;
 
     private Rigidbody _rb;
@@ -31,7 +31,6 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         Move();
-        Debug.Log(IsGrounded());
         if (!IsGrounded())
         {
             _velocity.y -= _gravityAcceleration;

@@ -11,8 +11,9 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        _myTransform = transform;
+        _myTransform = _playerMovement.GetComponentInParent<Transform>();
         _coolDown = 0f;
+
     }
     public void OnMoveCharacter(InputAction.CallbackContext context)
     {
@@ -43,7 +44,7 @@ public class PlayerController : MonoBehaviour
     {
         if (ctx.started && Time.time > _coolDown)
         {
-            FistPunch fistPunch = new(_myTransform.position);
+            FistPunch fistPunch = new(_myTransform.position, _playerMovement._isFacingLeft);
             fistPunch.Execute();
             _coolDown = Time.time + fistPunch.GetSpeed();
         }
@@ -53,7 +54,7 @@ public class PlayerController : MonoBehaviour
     {
         if (ctx.started && Time.time > _coolDown)
         {
-            FeetPunch feetPunch = new(_myTransform.position);
+            FeetPunch feetPunch = new(_myTransform.position, _playerMovement._isFacingLeft);
             feetPunch.Execute();
             _coolDown = Time.time + feetPunch.GetSpeed();
         }
