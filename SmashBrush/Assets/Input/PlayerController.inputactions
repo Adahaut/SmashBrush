@@ -55,6 +55,17 @@
                     "isPartOfComposite": false
                 },
                 {
+                    "name": "",
+                    "id": "40e83c4f-e42c-4e66-ad1b-117683b22184",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
                     "name": "2D Vector",
                     "id": "f9b9fe48-c7ab-4ccd-8718-677e63479a03",
                     "path": "2DVector",
@@ -89,6 +100,17 @@
                 },
                 {
                     "name": "",
+                    "id": "19c5fb1e-e427-48c7-8120-c56da49a717e",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "ScaleVector2(y=0)",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "a439dfa0-5e8b-40f7-aed6-329a0cc52a78",
                     "path": "<Keyboard>/r",
                     "interactions": "",
@@ -100,8 +122,30 @@
                 },
                 {
                     "name": "",
+                    "id": "7e32f7ac-c6e3-4807-8431-8ae031a3a29a",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AttackFist",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "e9c68067-c918-40b4-9190-25c649ee2fde",
                     "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AttackFeet",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d9e21236-7dee-494a-a50d-bdcd722d72fc",
+                    "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
