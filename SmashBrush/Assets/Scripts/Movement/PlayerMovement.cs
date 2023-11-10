@@ -15,7 +15,6 @@ public class PlayerMovement : MonoBehaviour
     private float _jumpDamping = 0.5f;
 
     public bool _isFacingLeft;
-
     private byte _jumpCount = 0;
 
     public Vector2 _velocity = Vector2.zero;
