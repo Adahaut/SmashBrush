@@ -15,6 +15,7 @@ public class PlayerCharacter : MonoBehaviour
 
     private void Awake()
     {
+        _controller = GetComponent<PlayerController>();
         _myTransform = transform;
     }
 
