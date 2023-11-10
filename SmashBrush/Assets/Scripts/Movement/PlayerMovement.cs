@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
 
     private float _gravityAcceleration = 0.1f;
     private float _gravity = 20f;
+    private float _jumpDamping = 0.5f;
 
     public bool _isFacingLeft;
 
@@ -30,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         Move();
-
+        Debug.Log(IsGrounded());
         if (!IsGrounded())
         {
             _velocity.y -= _gravityAcceleration;
@@ -82,7 +83,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (_velocity.y > 0)
         {
-            _velocity.y = 0;
+            _velocity.y *= _jumpDamping;
         }
     }
 
