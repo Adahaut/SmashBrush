@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-
+            _playerMovement.CancelJump();
         }
     }
 
