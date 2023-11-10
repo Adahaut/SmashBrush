@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         Move();
-
+        Debug.Log(IsGrounded());
         if (!IsGrounded())
         {
             _velocity.y -= _gravityAcceleration;

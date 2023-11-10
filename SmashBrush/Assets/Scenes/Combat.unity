@@ -301,25 +301,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 3620667295960704486, guid: 3d6171fd1ad160349afbed41bbba780a,
-        type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
     - target: {fileID: 5107748591986676682, guid: 3d6171fd1ad160349afbed41bbba780a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.45
+      value: 20.04
       objectReference: {fileID: 0}
     - target: {fileID: 5107748591986676682, guid: 3d6171fd1ad160349afbed41bbba780a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.08
+      value: 4.13
       objectReference: {fileID: 0}
     - target: {fileID: 5107748591986676682, guid: 3d6171fd1ad160349afbed41bbba780a,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -22.43
+      value: 22.72
       objectReference: {fileID: 0}
     - target: {fileID: 5107748591986676682, guid: 3d6171fd1ad160349afbed41bbba780a,
         type: 3}
@@ -356,7 +351,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3055311547329546498, guid: 3d6171fd1ad160349afbed41bbba780a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
