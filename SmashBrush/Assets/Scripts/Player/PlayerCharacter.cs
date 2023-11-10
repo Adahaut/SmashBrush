@@ -10,6 +10,8 @@ public class PlayerCharacter : MonoBehaviour
     public int _percent;
     public int _lifes;
 
+    public PlayerController _controller;
 
+    
 
 }
