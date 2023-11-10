@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public float _dampFactor = 0.9f;
 
     private float _gravityAcceleration = 0.1f;
-    private float _gravity = 20f;
+    private float _jumpHeight = 30f;
     private float _jumpDamping = 0.5f;
 
     public bool _isFacingLeft;
@@ -21,15 +21,19 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 _direction = Vector2.zero;
 
     private Rigidbody _rb;
+    private Transform _myTransform;
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
+        _myTransform = transform;
     }
 
     private void Update()
     {
         Move();
+
+
         if (!IsGrounded())
         {
             _velocity.y -= _gravityAcceleration;
@@ -38,6 +42,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        Physics.IgnoreLayerCollision(7, 6, _velocity.y > 0 || !IsGrounded() && _velocity.y < 0);
+
         _rb.velocity = new Vector3(_velocity.x, _velocity.y, 0);
     }
 
@@ -73,7 +79,7 @@ public class PlayerMovement : MonoBehaviour
         {
             _jumpCount++;
 
-            _velocity.y = _gravity;
+            _velocity.y = _jumpHeight;
         }
     }
 
@@ -87,7 +93,7 @@ public class PlayerMovement : MonoBehaviour
 
     public bool IsGrounded()
     {
-        if(Physics.Raycast(transform.position, Vector3.down, transform.localScale.y / 2 + 0.5f, _groundMask))
+        if(Physics.Raycast(_myTransform.position, Vector3.down, _myTransform.localScale.y / 2 + 0.5f, _groundMask))
         {
             if (_velocity.y < 0)
             {
