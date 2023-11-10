@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
             _playerMovement.SetDirection(context.ReadValue<Vector2>());
             _playerMovement._isFacingLeft = context.ReadValue<Vector2>().x < 0 ? true : false;
         }
-        else
+        else if (context.canceled)
         {
             _playerMovement.SetDirection(Vector2.zero);
         }
@@ -24,9 +24,9 @@ public class PlayerController : MonoBehaviour
         {
             _playerMovement.Jump();
         }
-        else
+        else if (context.canceled)
         {
-
+            _playerMovement.CancelJump();
         }
     }
 }
