@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CameraMovement : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class CameraMovement : MonoBehaviour
     private float _smoothTime = 0.5f;
 
     private float _minZoom = 40f;
-    private float _maxZoom = 10f;
+    private float _maxZoom = 25f;
     private float _zoomLimit = 50f;
 
     private Transform _myTransform;
@@ -26,16 +27,16 @@ public class CameraMovement : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (_targets.Count == 0) 
-            return;
+        if (_targets.Count > 0)
+        {
+            Vector3 centerPoint = GetCenterPoint();
+            Vector3 newPosition = centerPoint + _offSet;
 
-        Vector3 centerPoint = GetCenterPoint();
-        Vector3 newPosition = centerPoint + _offSet;
+            _myTransform.position = Vector3.SmoothDamp(_myTransform.position, newPosition, ref _velocity, _smoothTime);
 
-        _myTransform.position = Vector3.SmoothDamp(_myTransform.position, newPosition, ref _velocity, _smoothTime);
-
-        float newZoom = Mathf.Lerp(_maxZoom, _minZoom, GetGreatedDistance() / _zoomLimit);
-        _cam.fieldOfView = Mathf.Lerp(_cam.fieldOfView, newZoom, Time.deltaTime);
+            float newZoom = Mathf.Lerp(_maxZoom, _minZoom, GetGreatedDistance() / _zoomLimit);
+            _cam.fieldOfView = Mathf.Lerp(_cam.fieldOfView, newZoom, Time.deltaTime);
+        }
     }
 
     private Vector3 GetCenterPoint()
@@ -65,5 +66,16 @@ public class CameraMovement : MonoBehaviour
         }
 
         return bounds.size.x;
+    }
+
+    public void OnPlayerJoined(PlayerInput playerInput)
+    {
+        Debug.Log("player joinded");
+        _targets.Add(playerInput.transform);
+    }
+
+    public void OnPlayerLeft(PlayerInput playerInput)
+    {
+        _targets.Remove(playerInput.transform);
     }
 }
