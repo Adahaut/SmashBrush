@@ -92,7 +92,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3620667295960704486}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff84c4d3b7ae0864e98c7da5f89e9151, type: 3}
   m_Name: 
@@ -100,6 +100,7 @@ MonoBehaviour:
   _percent: 0
   _lifes: 0
   _controller: {fileID: 0}
+  _UI: {fileID: 3106247349132411918, guid: c88e669bb5fcc7f46add594534fd4a6f, type: 3}
 --- !u!136 &8508421566297699956
 CapsuleCollider:
   m_ObjectHideFlags: 0

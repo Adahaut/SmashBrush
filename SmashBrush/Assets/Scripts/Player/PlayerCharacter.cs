@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -13,11 +14,46 @@ public class PlayerCharacter : MonoBehaviour
 
     public PlayerController _controller;
 
+    public TextMeshProUGUI _UI;
     private void Awake()
     {
         _controller = GetComponent<PlayerController>();
         _myTransform = transform;
+        CreateUI();
     }
+
+    private void Update()
+    {
+        _UI.text = "Player " + Camera.main.GetComponent<CameraMovement>()._nbPlayer + " " + _percent + " %";
+    }
+
+    private void CreateUI()
+    {
+        _UI = Instantiate(_UI, GameObject.Find("Canvas").transform);
+        if (Camera.main.GetComponent<CameraMovement>()._nbPlayer == 0)
+        {
+            _UI.GetComponent<RectTransform>().anchoredPosition = new Vector3(-835, 495, 0);
+            Camera.main.GetComponent<CameraMovement>()._nbPlayer = 1;
+        }
+        else if (Camera.main.GetComponent<CameraMovement>()._nbPlayer == 1)
+        {
+            _UI.GetComponent<RectTransform>().anchoredPosition = new Vector3(890, 495, 0);
+            Camera.main.GetComponent<CameraMovement>()._nbPlayer = 2;
+        }
+        else if (Camera.main.GetComponent<CameraMovement>()._nbPlayer == 2)
+        {
+            _UI.GetComponent<RectTransform>().anchoredPosition = new Vector3(-835, -495, 0);
+            Camera.main.GetComponent<CameraMovement>()._nbPlayer = 3;
+        }
+        else if (Camera.main.GetComponent<CameraMovement>()._nbPlayer == 3)
+        {
+            _UI.GetComponent<RectTransform>().anchoredPosition = new Vector3(890, -495, 0);
+            Camera.main.GetComponent<CameraMovement>()._nbPlayer = 4;
+        }
+        _UI.text = "Player " + Camera.main.GetComponent<CameraMovement>()._nbPlayer + " " + _percent + " %";
+
+    }
+
 
     private void OnCollisionEnter(Collision collision)
     {
