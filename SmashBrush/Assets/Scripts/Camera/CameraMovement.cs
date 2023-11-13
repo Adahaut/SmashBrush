@@ -8,10 +8,10 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] private Vector3 _offSet;
 
     private Vector3 _velocity;
-    private float _smoothTime = 0.5f;
+    private float _smoothTime = 0.9f;
 
     private float _minZoom = 40f;
-    private float _maxZoom = 10f;
+    private float _maxZoom = 20f;
     private float _zoomLimit = 50f;
 
     private Transform _myTransform;
@@ -24,7 +24,7 @@ public class CameraMovement : MonoBehaviour
         _cam = GetComponent<Camera>();
     }
 
-    private void LateUpdate()
+    private void Update()
     {
         if (_targets.Count == 0) 
             return;
@@ -34,7 +34,7 @@ public class CameraMovement : MonoBehaviour
 
         _myTransform.position = Vector3.SmoothDamp(_myTransform.position, newPosition, ref _velocity, _smoothTime);
 
-        float newZoom = Mathf.Lerp(_maxZoom, _minZoom, GetGreatedDistance() / _zoomLimit);
+        float newZoom = Mathf.Lerp(_maxZoom, _minZoom, GetGreatestDistance() / _zoomLimit);
         _cam.fieldOfView = Mathf.Lerp(_cam.fieldOfView, newZoom, Time.deltaTime);
     }
 
@@ -55,7 +55,7 @@ public class CameraMovement : MonoBehaviour
         return bounds.center;
     }
 
-    private float GetGreatedDistance()
+    private float GetGreatestDistance()
     {
         var bounds = new Bounds(_targets[0].position, Vector3.zero);
 
