@@ -7,6 +7,8 @@ public class CameraMovement : MonoBehaviour
     public List<Transform> _targets = new List<Transform>();
     [SerializeField] private Vector3 _offSet;
 
+    public int _nbPlayer = 0;
+
     private Vector3 _velocity;
     private float _smoothTime = 0.5f;
 
