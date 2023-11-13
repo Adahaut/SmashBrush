@@ -12,10 +12,12 @@ public class CameraMovement : MonoBehaviour
     public int _nbPlayer = 0;
 
     private Vector3 _velocity;
-    private float _smoothTime = 0.5f;
+    private float _smoothTime = 0.9f;
 
     private float _minZoom = 40f;
+
     private float _maxZoom = 25f;
+
     private float _zoomLimit = 50f;
 
     private float _distance = 0;
@@ -29,7 +31,7 @@ public class CameraMovement : MonoBehaviour
         _cam = GetComponent<Camera>();
     }
 
-    private void LateUpdate()
+    private void Update()
     {
         if (_targets.Count > 0)
         {
@@ -63,7 +65,7 @@ public class CameraMovement : MonoBehaviour
         return bounds.center;
     }
 
-    private float GetGreatedDistance()
+    private float GetGreatestDistance()
     {
         var bounds = new Bounds(_targets[0].position, Vector3.zero);
 
