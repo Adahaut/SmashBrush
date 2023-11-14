@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.IO.LowLevel.Unsafe;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -5,6 +6,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private GameObject _atkVisual;
     private PlayerMovement _playerMovement;
 
     private Transform _myTransform;
@@ -18,6 +20,8 @@ public class PlayerController : MonoBehaviour
         _myTransform = _playerMovement.GetComponentInParent<Transform>();
         _coolDown = 0f;
         _isStun = false;
+
+        _atkVisual.SetActive(false);
     }
 
     private void Update()
@@ -68,6 +72,11 @@ public class PlayerController : MonoBehaviour
                 _playerMovement._velocity.x = _playerMovement._isFacingLeft ? -fistPunch.GetForward() : fistPunch.GetForward();
                 fistPunch.Execute();
                 _coolDown = Time.time + fistPunch.GetSpeed();
+
+                _atkVisual.SetActive(true);
+                _atkVisual.transform.position = new Vector3(_playerMovement._isFacingLeft ? _myTransform.position.x - fistPunch.GetRange() / 2 : _myTransform.position.x + fistPunch.GetRange() / 2, _myTransform.position.y, _myTransform.position.z);
+                _atkVisual.transform.localScale = new Vector3(fistPunch.GetRange(), 0.2f, 0.2f);
+                StartCoroutine(AttackAnimation(fistPunch.GetSpeed()));
             }
         }
 
@@ -83,8 +92,20 @@ public class PlayerController : MonoBehaviour
                 _playerMovement._velocity.x = _playerMovement._isFacingLeft ? -feetPunch.GetForward() : feetPunch.GetForward();
                 feetPunch.Execute();
                 _coolDown = Time.time + feetPunch.GetSpeed();
+
+                _atkVisual.SetActive(true);
+                _atkVisual.transform.position = new Vector3(_playerMovement._isFacingLeft ? _myTransform.position.x -feetPunch.GetRange() / 2 : _myTransform.position.x + feetPunch.GetRange() / 2, _myTransform.position.y, _myTransform.position.z);
+                _atkVisual.transform.localScale = new Vector3(feetPunch.GetRange(), 0.2f, 0.2f);
+                StartCoroutine(AttackAnimation(feetPunch.GetSpeed()));
             }
         }
 
+    }
+
+    private IEnumerator AttackAnimation(float speed)
+    {
+        yield return new WaitForSeconds(speed);
+
+        _atkVisual.SetActive(false);
     }
 }
