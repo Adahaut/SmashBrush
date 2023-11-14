@@ -102,7 +102,7 @@ public class CameraMovement : MonoBehaviour
 
     public void OnPlayerJoined(PlayerInput playerInput)
     {
-        Debug.Log("player joinded");
+        Debug.Log("player joined");
         _targets.Add(playerInput.transform);
     }
 
