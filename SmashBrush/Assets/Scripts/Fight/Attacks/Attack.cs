@@ -50,9 +50,7 @@ public abstract class Attack
         else
         {
             enemy._percent += m_damage;
-            //enemy.GetComponentInParent<PlayerMovement>()._velocity.x = m_direction ? -m_recoil : m_recoil;
-            //enemy.GetComponentInParent<PlayerMovement>()._velocity.y = 5;
-            enemy.GetComponentInParent<PlayerMovement>()._velocity.Set(m_direction ? -m_recoil : m_recoil, 10);
+            enemy.GetComponentInParent<PlayerMovement>()._velocity.Set(m_direction ? -m_recoil : m_recoil, 5);
             enemy._controller._isStun = true;
             enemy._controller._stunTime = Time.time + m_stun;
         }

@@ -71,9 +71,9 @@ public class PlayerController : MonoBehaviour
             if (ctx.started && Time.time > _coolDown)
             {
                 FistPunch fistPunch = new(_myTransform.position, _playerMovement._isFacingLeft);
-                _playerMovement._velocity.x = _playerMovement._isFacingLeft ? -fistPunch.GetForward() : fistPunch.GetForward();
                 fistPunch.Execute();
                 _coolDown = Time.time + fistPunch.GetSpeed();
+                //_playerMovement._velocity.x = _playerMovement._isFacingLeft ? -fistPunch.GetForward() : fistPunch.GetForward();
 
                 _atkVisual.SetActive(true);
                 _atkVisual.transform.position = new Vector3(_playerMovement._isFacingLeft ? _myTransform.position.x - fistPunch.GetRange() / 2 : _myTransform.position.x + fistPunch.GetRange() / 2, _myTransform.position.y, _myTransform.position.z);
@@ -91,9 +91,9 @@ public class PlayerController : MonoBehaviour
             if (ctx.started && Time.time > _coolDown)
             {
                 FeetPunch feetPunch = new(_myTransform.position, _playerMovement._isFacingLeft);
-                _playerMovement._velocity.x = _playerMovement._isFacingLeft ? -feetPunch.GetForward() : feetPunch.GetForward();
                 feetPunch.Execute();
                 _coolDown = Time.time + feetPunch.GetSpeed();
+                //_playerMovement._velocity.x = _playerMovement._isFacingLeft ? -feetPunch.GetForward() : feetPunch.GetForward();
 
                 _atkVisual.SetActive(true);
                 _atkVisual.transform.position = new Vector3(_playerMovement._isFacingLeft ? _myTransform.position.x -feetPunch.GetRange() / 2 : _myTransform.position.x + feetPunch.GetRange() / 2, _myTransform.position.y, _myTransform.position.z);
