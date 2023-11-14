@@ -25,12 +25,9 @@ public class PlayerCharacter : MonoBehaviour
         _controller = GetComponent<PlayerController>();
         _myTransform = transform;
         CreateUI();
-    }
-
-    private void Start()
-    {
         SpawnPlayer(_actualSpawnPoint);
     }
+
 
     private void Update()
     {
@@ -78,8 +75,13 @@ public class PlayerCharacter : MonoBehaviour
     {
         if (collision.transform.gameObject.tag == "WorldEdges")
         {
+            Debug.Log(_myTransform.position);
             _lifes--;
             SpawnPlayer(_actualSpawnPoint);
+        }
+        else
+        {
+            return;
         }
     }
 

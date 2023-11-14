@@ -82,7 +82,7 @@ MonoBehaviour:
     m_Bits: 64
   _acceleration: 0.2
   _maxSpeed: 7
-  _dampFactor: 5
+  _dampFactor: 0.9
   _isFacingLeft: 0
   _velocity: {x: 0, y: 0}
 --- !u!114 &5288658968008097131
@@ -218,6 +218,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 664d5d3e-6328-436f-94e7-83840e2fdd1a
     m_ActionName: Player/AttackFeet[/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0695e867-89bd-44ff-aed9-3efde68437e5
+    m_ActionName: Player/OpenPauseMenu[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
