@@ -6,6 +6,7 @@ public class CameraMovement : MonoBehaviour
 {
     public List<Transform> _targets = new List<Transform>();
     [SerializeField] private Vector3 _offSet;
+    public GameObject _panel;
 
     public int _nbPlayer = 0;
 
@@ -25,6 +26,7 @@ public class CameraMovement : MonoBehaviour
 
     private void Awake()
     {
+        Time.timeScale = 1;
         _targets.Clear();
         _myTransform = transform;
         _cam = GetComponent<Camera>();
