@@ -707,7 +707,7 @@ GameObject:
   - component: {fileID: 1139277956}
   m_Layer: 6
   m_Name: Secondary Plateform 4
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -812,7 +812,7 @@ GameObject:
   - component: {fileID: 1224991792}
   m_Layer: 6
   m_Name: Secondary Plateform 1
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -970,7 +970,7 @@ GameObject:
   - component: {fileID: 1296785122}
   m_Layer: 6
   m_Name: Secondary Plateform 5
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1075,7 +1075,7 @@ GameObject:
   - component: {fileID: 1579681118}
   m_Layer: 6
   m_Name: Secondary Plateform 2
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1211,7 +1211,7 @@ GameObject:
   - component: {fileID: 1897975899}
   m_Layer: 6
   m_Name: Secondary Plateform 3
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1394,7 +1394,7 @@ GameObject:
   - component: {fileID: 2004716601}
   m_Layer: 6
   m_Name: Main Platform
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
