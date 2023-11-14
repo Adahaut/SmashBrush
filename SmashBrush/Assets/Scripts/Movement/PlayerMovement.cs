@@ -39,7 +39,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Physics.IgnoreLayerCollision(7, 6, _velocity.y > 0 || !IsGrounded() && _velocity.y < 0);
+        //Physics.IgnoreLayerCollision(7, 6, _velocity.y > 0 || !IsGrounded() && _velocity.y < 0);
+
+        if (Physics.Raycast(_myTransform.position + (_myTransform.localScale / 2), Vector3.up, out RaycastHit hitInfo, 0.5f))
+        {
+            Physics.IgnoreCollision(_myTransform.GetComponent<Collider>(), hitInfo.collider, hitInfo.collider.tag == "Platform");
+        }
 
         _rb.velocity = _velocity;
     }
@@ -90,7 +95,7 @@ public class PlayerMovement : MonoBehaviour
 
     public bool IsGrounded()
     {
-        if(Physics.Raycast(_myTransform.position, Vector3.down, _myTransform.localScale.y / 2 + 0.5f, _groundMask))
+        if(Physics.BoxCast(_myTransform.position, _myTransform.localScale / 2, Vector3.down, Quaternion.identity, _myTransform.localScale.y / 2 + 0.1f, _groundMask))
         {
             if (_velocity.y < 0)
             {
