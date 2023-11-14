@@ -7,9 +7,9 @@ public class FeetPunch : Attack
     {
         m_damage = 5;
         m_range = 2f;
-        m_speed = 0.2f;
+        m_speed = 1f;
         m_stun = 0.5f;
-        m_recoil = 0.5f;
+        m_recoil = 20f;
         m_forward = 2f;
         m_position = pos;
         m_direction = direction;
@@ -23,7 +23,6 @@ public class FeetPunch : Attack
 
             if (hit.transform.tag == "Player")
             {
-                m_recoil *= hit.transform.GetComponent<PlayerCharacter>()._percent;
                 AttackEnnemi(hit.transform.GetComponent<PlayerCharacter>());
             }
         }

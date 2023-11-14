@@ -55,14 +55,14 @@ public class PlayerCharacter : MonoBehaviour
         else if (Camera.main.GetComponent<CameraMovement>()._nbPlayer == 2)
         {
             _actualSpawnPoint = _spawnPoint3.position;
-            _UI.GetComponent<RectTransform>().anchoredPosition = new Vector3(-850, -495, 0);
+            _UI.GetComponent<RectTransform>().anchoredPosition = new Vector3(-850, -470, 0);
             Camera.main.GetComponent<CameraMovement>()._nbPlayer = 3;
             _playerID = 3;
         }
         else if (Camera.main.GetComponent<CameraMovement>()._nbPlayer == 3)
         {
             _actualSpawnPoint = _spawnPoint4.position;
-            _UI.GetComponent<RectTransform>().anchoredPosition = new Vector3(890, -495, 0);
+            _UI.GetComponent<RectTransform>().anchoredPosition = new Vector3(890, -470, 0);
             Camera.main.GetComponent<CameraMovement>()._nbPlayer = 4;
             _playerID = 4;
         }
