@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class PlayerController : MonoBehaviour
     private float _coolDown;
     public float _stunTime;
     public bool _isStun;
+    public GameObject _panel;
 
     private void Awake()
     {
@@ -19,6 +21,7 @@ public class PlayerController : MonoBehaviour
         _coolDown = 0f;
         _isStun = false;
 
+        _panel = Camera.main.GetComponent<CameraMovement>()._panel;
         _atkVisual.SetActive(false);
     }
 
@@ -52,6 +55,7 @@ public class PlayerController : MonoBehaviour
             if (context.started)
             {
                 _playerMovement.Jump();
+
             }
             else
             {
@@ -98,6 +102,23 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+    }
+
+    public void OnMenuPauseOpen(InputAction.CallbackContext ctx)
+    {
+        if (ctx.started)
+        {
+            if (Time.timeScale != 0)
+            {
+                Time.timeScale = 0;
+                _panel.SetActive(true);
+            }
+            else
+            {
+                Time.timeScale = 1;
+                _panel.SetActive(false);
+            }
+        }
     }
 
     private IEnumerator AttackAnimation(float speed)

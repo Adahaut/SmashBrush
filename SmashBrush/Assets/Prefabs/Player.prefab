@@ -219,7 +219,19 @@ MonoBehaviour:
     m_ActionId: 664d5d3e-6328-436f-94e7-83840e2fdd1a
     m_ActionName: Player/AttackFeet[/Keyboard/f]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5041318172840096501}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnMenuPauseOpen
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 0695e867-89bd-44ff-aed9-3efde68437e5
     m_ActionName: Player/OpenPauseMenu[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
@@ -242,6 +254,7 @@ MonoBehaviour:
   _atkVisual: {fileID: 5624492944530761935}
   _stunTime: 0
   _isStun: 0
+  _panel: {fileID: 1920380602596362431, guid: 9eaa36ef8d545f748bf4cf2f4905345e, type: 3}
 --- !u!1 &5624492944530761935
 GameObject:
   m_ObjectHideFlags: 0

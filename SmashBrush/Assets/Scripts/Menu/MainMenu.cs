@@ -13,4 +13,9 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
+    public void Resume()
+    {
+        Time.timeScale = 1;
+        Camera.main.GetComponent<CameraMovement>()._panel.SetActive(false);
+    }
 }

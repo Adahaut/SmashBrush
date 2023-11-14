@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ee0404b7facb3f44a666bae1e673e42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _targets:
-  - {fileID: 0}
-  - {fileID: 0}
+  _targets: []
   _offSet: {x: 0, y: 15, z: -50}
+  _panel: {fileID: 0}
+  _nbPlayer: 0
