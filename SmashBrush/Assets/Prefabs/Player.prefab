@@ -80,7 +80,7 @@ MonoBehaviour:
   _groundMask:
     serializedVersion: 2
     m_Bits: 64
-  _acceleration: 0.2
+  _acceleration: 100
   _maxSpeed: 7
   _dampFactor: 0.9
   _isFacingLeft: 0

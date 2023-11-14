@@ -5,11 +5,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask _groundMask;
 
     [Header("Movement attributs")]
-    public float _acceleration = 0.2f;
+    public float _acceleration = 100f;
     public float _maxSpeed = 3f;
     public float _dampFactor = 0.9f;
 
-    private float _gravityAcceleration = 0.1f;
+    private float _gravityAcceleration = 40f;
     private float _jumpHeight = 30f;
     private float _jumpDamping = 0.5f;
 
@@ -31,11 +31,9 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         Move();
-
-
         if (!IsGrounded())
         {
-            _velocity.y -= _gravityAcceleration;
+            _velocity.y -= _gravityAcceleration * Time.deltaTime;
         }
     }
 
@@ -43,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Physics.IgnoreLayerCollision(7, 6, _velocity.y > 0 || !IsGrounded() && _velocity.y < 0);
 
-        _rb.velocity = new Vector3(_velocity.x, _velocity.y, 0);
+        _rb.velocity = _velocity;
     }
 
     public void SetDirection(Vector2 direction)
@@ -55,7 +53,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (_direction != Vector2.zero)
         {
-            _velocity += _direction * _acceleration;
+            _velocity += _direction * _acceleration * Time.deltaTime;
 
             if (_velocity.x >= _maxSpeed)
             {
@@ -68,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            _velocity.x *= _dampFactor;
+            _velocity.x *= _dampFactor * Time.deltaTime;
         }
     }
 
