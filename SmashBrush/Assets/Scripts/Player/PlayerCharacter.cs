@@ -89,6 +89,7 @@ public class PlayerCharacter : MonoBehaviour
     {
         _myTransform.position = pos;
         GetComponent<PlayerMovement>()._velocity = Vector2.zero;
+        _percent = 0;
     }
 
 }
