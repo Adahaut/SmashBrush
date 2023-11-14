@@ -27,6 +27,7 @@ public class CameraMovement : MonoBehaviour
 
     private void Awake()
     {
+        _targets.Clear();
         _myTransform = transform;
         _cam = GetComponent<Camera>();
     }
