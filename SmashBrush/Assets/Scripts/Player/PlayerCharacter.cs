@@ -45,7 +45,7 @@ public class PlayerCharacter : MonoBehaviour
             Camera.main.GetComponent<CameraMovement>()._nbPlayer = 1;
             _playerID = 1;
 
-            SetNamePlate("P1", Color.blue);
+            SetNamePlate("Player 1", Color.blue);
 
         }
         else if (Camera.main.GetComponent<CameraMovement>()._nbPlayer == 1)
@@ -55,7 +55,7 @@ public class PlayerCharacter : MonoBehaviour
             Camera.main.GetComponent<CameraMovement>()._nbPlayer = 2;
             _playerID = 2;
 
-            SetNamePlate("P2", Color.red);
+            SetNamePlate("Player 2", Color.red);
         }
         else if (Camera.main.GetComponent<CameraMovement>()._nbPlayer == 2)
         {
@@ -64,7 +64,7 @@ public class PlayerCharacter : MonoBehaviour
             Camera.main.GetComponent<CameraMovement>()._nbPlayer = 3;
             _playerID = 3;
 
-            SetNamePlate("P3", Color.yellow);
+            SetNamePlate("Player 3", Color.yellow);
         }
         else if (Camera.main.GetComponent<CameraMovement>()._nbPlayer == 3)
         {
@@ -73,7 +73,7 @@ public class PlayerCharacter : MonoBehaviour
             Camera.main.GetComponent<CameraMovement>()._nbPlayer = 4;
             _playerID = 4;
 
-            SetNamePlate("P4", Color.green);
+            SetNamePlate("Player 4", Color.green);
         }
         _UI.text = "Player " + _playerID + " " + _percent + " %";
     }
