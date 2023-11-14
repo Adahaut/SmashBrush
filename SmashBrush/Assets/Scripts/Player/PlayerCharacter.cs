@@ -7,6 +7,7 @@ public class PlayerCharacter : MonoBehaviour
     public int _lifes = 3;
     private int _playerID;
     private Transform _myTransform;
+    [SerializeField] private TextMeshProUGUI _playerName;
 
     public PlayerController _controller;
 
@@ -43,7 +44,9 @@ public class PlayerCharacter : MonoBehaviour
             _UI.GetComponent<RectTransform>().anchoredPosition = new Vector3(-850, 495, 0);
             Camera.main.GetComponent<CameraMovement>()._nbPlayer = 1;
             _playerID = 1;
-            
+
+            SetNamePlate("P1", Color.blue);
+
         }
         else if (Camera.main.GetComponent<CameraMovement>()._nbPlayer == 1)
         {
@@ -51,6 +54,8 @@ public class PlayerCharacter : MonoBehaviour
             _UI.GetComponent<RectTransform>().anchoredPosition = new Vector3(890, 495, 0);
             Camera.main.GetComponent<CameraMovement>()._nbPlayer = 2;
             _playerID = 2;
+
+            SetNamePlate("P2", Color.red);
         }
         else if (Camera.main.GetComponent<CameraMovement>()._nbPlayer == 2)
         {
@@ -58,6 +63,8 @@ public class PlayerCharacter : MonoBehaviour
             _UI.GetComponent<RectTransform>().anchoredPosition = new Vector3(-850, -470, 0);
             Camera.main.GetComponent<CameraMovement>()._nbPlayer = 3;
             _playerID = 3;
+
+            SetNamePlate("P3", Color.yellow);
         }
         else if (Camera.main.GetComponent<CameraMovement>()._nbPlayer == 3)
         {
@@ -65,9 +72,16 @@ public class PlayerCharacter : MonoBehaviour
             _UI.GetComponent<RectTransform>().anchoredPosition = new Vector3(890, -470, 0);
             Camera.main.GetComponent<CameraMovement>()._nbPlayer = 4;
             _playerID = 4;
+
+            SetNamePlate("P4", Color.green);
         }
         _UI.text = "Player " + _playerID + " " + _percent + " %";
+    }
 
+    private void SetNamePlate(string name, Color color)
+    {
+        _playerName.text = name;
+        _playerName.color = color;
     }
 
 
