@@ -71,7 +71,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            _velocity.x *= _dampFactor * Time.deltaTime;
+            _velocity.x *= Time.deltaTime;
         }
     }
 

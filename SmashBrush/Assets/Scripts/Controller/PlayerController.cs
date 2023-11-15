@@ -77,12 +77,11 @@ public class PlayerController : MonoBehaviour
                 fistPunch.Execute();
                 _coolDown = Time.time + fistPunch.GetSpeed();
 
-                _animator.SetTrigger("Punch");
 
-                //_atkVisual.SetActive(true);
-                //_atkVisual.transform.position = new Vector3(_playerMovement._isFacingLeft ? _myTransform.position.x - fistPunch.GetRange() / 2 : _myTransform.position.x + fistPunch.GetRange() / 2, _myTransform.position.y, _myTransform.position.z);
-                //_atkVisual.transform.localScale = new Vector3(fistPunch.GetRange(), 0.2f, 0.2f);
-                //StartCoroutine(AttackAnimation(fistPunch.GetSpeed()));
+                _atkVisual.SetActive(true);
+                _atkVisual.transform.position = new Vector3(_playerMovement._isFacingLeft ? _myTransform.position.x - fistPunch.GetRange() / 2 : _myTransform.position.x + fistPunch.GetRange() / 2, _myTransform.position.y, _myTransform.position.z);
+                _atkVisual.transform.localScale = new Vector3(fistPunch.GetRange(), 0.2f, 0.2f);
+                StartCoroutine(AttackAnimation(0.3f));
             }
         }
 
@@ -99,12 +98,11 @@ public class PlayerController : MonoBehaviour
                 feetPunch.Execute();
                 _coolDown = Time.time + feetPunch.GetSpeed();
 
-                _animator.SetTrigger("Kick");
 
-                //_atkVisual.SetActive(true);
-                //_atkVisual.transform.position = new Vector3(_playerMovement._isFacingLeft ? _myTransform.position.x -feetPunch.GetRange() / 2 : _myTransform.position.x + feetPunch.GetRange() / 2, _myTransform.position.y, _myTransform.position.z);
-                //_atkVisual.transform.localScale = new Vector3(feetPunch.GetRange(), 0.2f, 0.2f);
-                //StartCoroutine(AttackAnimation(feetPunch.GetSpeed()));
+                _atkVisual.SetActive(true);
+                _atkVisual.transform.position = new Vector3(_playerMovement._isFacingLeft ? _myTransform.position.x -feetPunch.GetRange() / 2 : _myTransform.position.x + feetPunch.GetRange() / 2, _myTransform.position.y, _myTransform.position.z);
+                _atkVisual.transform.localScale = new Vector3(feetPunch.GetRange(), 0.2f, 0.2f);
+                StartCoroutine(AttackAnimation(0.3f));
             }
         }
 
