@@ -46,7 +46,6 @@ public class PlayerCharacter : MonoBehaviour
         {
             _actualSpawnPoint = _spawnPoint1.position;
             _UI.GetComponent<RectTransform>().anchoredPosition = new Vector3(-850, 495, 0);
-            _UI.color = Color.blue;
             Camera.main.GetComponent<CameraMovement>()._nbPlayer = 1;
             _playerID = 1;
 
@@ -57,7 +56,6 @@ public class PlayerCharacter : MonoBehaviour
         {
             _actualSpawnPoint = _spawnPoint2.position;
             _UI.GetComponent<RectTransform>().anchoredPosition = new Vector3(890, 495, 0);
-            _UI.color = Color.red;
             Camera.main.GetComponent<CameraMovement>()._nbPlayer = 2;
             _playerID = 2;
 
@@ -66,8 +64,7 @@ public class PlayerCharacter : MonoBehaviour
         else if (Camera.main.GetComponent<CameraMovement>()._nbPlayer == 2)
         {
             _actualSpawnPoint = _spawnPoint3.position;
-            _UI.GetComponent<RectTransform>().anchoredPosition = new Vector3(-850, -470, 0);
-            _UI.color = Color.yellow;
+            _UI.GetComponent<RectTransform>().anchoredPosition = new Vector3(-850, -450, 0);
             Camera.main.GetComponent<CameraMovement>()._nbPlayer = 3;
             _playerID = 3;
 
@@ -76,8 +73,7 @@ public class PlayerCharacter : MonoBehaviour
         else if (Camera.main.GetComponent<CameraMovement>()._nbPlayer == 3)
         {
             _actualSpawnPoint = _spawnPoint4.position;
-            _UI.GetComponent<RectTransform>().anchoredPosition = new Vector3(890, -470, 0);
-            _UI.color = Color.green;
+            _UI.GetComponent<RectTransform>().anchoredPosition = new Vector3(890, -450, 0);
             Camera.main.GetComponent<CameraMovement>()._nbPlayer = 4;
             _playerID = 4;
 
@@ -90,6 +86,7 @@ public class PlayerCharacter : MonoBehaviour
     {
         _playerName.text = name;
         _playerName.color = color;
+        _UI.color = color;
     }
 
 
