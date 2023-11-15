@@ -202,6 +202,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _percent: 0
   _lifes: 3
+  _playerName: {fileID: 7633558061352600674}
   _controller: {fileID: 0}
   _UI: {fileID: 3106247349132411918, guid: c88e669bb5fcc7f46add594534fd4a6f, type: 3}
   _spawnPoint1: {fileID: 0}
@@ -459,7 +460,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6351687702589975178
 Transform:
   m_ObjectHideFlags: 0
@@ -526,7 +527,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
-
 --- !u!1 &8452111283677167942
 GameObject:
   m_ObjectHideFlags: 0
@@ -661,4 +661,3 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
-
