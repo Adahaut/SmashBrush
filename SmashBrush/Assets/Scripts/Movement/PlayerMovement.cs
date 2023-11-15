@@ -71,12 +71,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            _velocity.x -= _acceleration * Time.deltaTime;
-
-            if (_velocity.x <= 0)
-            {
-                _velocity.x = 0;
-            }
+            _velocity.x *= Time.deltaTime;
         }
     }
 
