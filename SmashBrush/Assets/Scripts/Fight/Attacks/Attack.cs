@@ -49,8 +49,7 @@ public abstract class Attack
         }
         else
         {
-            Debug.Log(m_direction);
-
+            enemy.GetComponentInChildren<ParticleSystem>().Play();
             enemy._percent += m_damage;
             enemy.GetComponentInParent<PlayerMovement>()._velocity.y = 10;
             enemy.transform.Translate(new Vector2(m_direction ? -m_recoil : m_recoil, 0) * Time.deltaTime * 3);
