@@ -13,6 +13,8 @@ public class PlayerMovement : MonoBehaviour
     private float _jumpHeight = 30f;
     private float _jumpDamping = 0.5f;
 
+    private float _rotationSpeed = 100f;
+
     public bool _isFacingLeft;
     private byte _jumpCount = 0;
 
@@ -22,15 +24,19 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody _rb;
     private Transform _myTransform;
 
+    private GameObject _playerBody;
+
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
         _myTransform = transform;
+        _playerBody = _myTransform.GetChild(0).gameObject;
     }
 
     private void Update()
     {
         Move();
+        PlayerRotation();
         if (!IsGrounded())
         {
             _velocity.y -= _gravityAcceleration * Time.deltaTime;
@@ -107,5 +113,10 @@ public class PlayerMovement : MonoBehaviour
         }
            
         return false;
+    }
+
+    public void PlayerRotation()
+    {
+        _playerBody.transform.Rotate(0, 0, _rotationSpeed * -_rb.velocity.x * Time.deltaTime);
     }
 }
