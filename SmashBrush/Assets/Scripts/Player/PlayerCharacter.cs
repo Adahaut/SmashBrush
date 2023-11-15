@@ -8,6 +8,7 @@ public class PlayerCharacter : MonoBehaviour
     public int _lifes = 3;
     private int _playerID;
     private Transform _myTransform;
+    [SerializeField] private TextMeshProUGUI _playerName;
 
     public PlayerController _controller;
 
@@ -48,7 +49,9 @@ public class PlayerCharacter : MonoBehaviour
             _UI.color = Color.blue;
             Camera.main.GetComponent<CameraMovement>()._nbPlayer = 1;
             _playerID = 1;
-            
+
+            SetNamePlate("Player 1", Color.blue);
+
         }
         else if (Camera.main.GetComponent<CameraMovement>()._nbPlayer == 1)
         {
@@ -57,6 +60,8 @@ public class PlayerCharacter : MonoBehaviour
             _UI.color = Color.red;
             Camera.main.GetComponent<CameraMovement>()._nbPlayer = 2;
             _playerID = 2;
+
+            SetNamePlate("Player 2", Color.red);
         }
         else if (Camera.main.GetComponent<CameraMovement>()._nbPlayer == 2)
         {
@@ -65,6 +70,8 @@ public class PlayerCharacter : MonoBehaviour
             _UI.color = Color.yellow;
             Camera.main.GetComponent<CameraMovement>()._nbPlayer = 3;
             _playerID = 3;
+
+            SetNamePlate("Player 3", Color.yellow);
         }
         else if (Camera.main.GetComponent<CameraMovement>()._nbPlayer == 3)
         {
@@ -73,9 +80,16 @@ public class PlayerCharacter : MonoBehaviour
             _UI.color = Color.green;
             Camera.main.GetComponent<CameraMovement>()._nbPlayer = 4;
             _playerID = 4;
+
+            SetNamePlate("Player 4", Color.green);
         }
         _UI.text = "Player " + _playerID + " " + _percent + " %";
+    }
 
+    private void SetNamePlate(string name, Color color)
+    {
+        _playerName.text = name;
+        _playerName.color = color;
     }
 
 
