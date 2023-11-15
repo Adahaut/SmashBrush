@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private GameObject _atkVisual;
     private PlayerMovement _playerMovement;
+    private Animator _animator;
 
     private Transform _myTransform;
     private float _coolDown;
@@ -18,6 +19,7 @@ public class PlayerController : MonoBehaviour
     {
         _playerMovement = GetComponent<PlayerMovement>();
         _myTransform = _playerMovement.GetComponentInParent<Transform>();
+        _animator = GetComponentInChildren<Animator>();
         _coolDown = 0f;
         _isStun = false;
 
@@ -75,6 +77,7 @@ public class PlayerController : MonoBehaviour
                 fistPunch.Execute();
                 _coolDown = Time.time + fistPunch.GetSpeed();
 
+
                 _atkVisual.SetActive(true);
                 _atkVisual.transform.position = new Vector3(_playerMovement._isFacingLeft ? _myTransform.position.x - fistPunch.GetRange() / 2 : _myTransform.position.x + fistPunch.GetRange() / 2, _myTransform.position.y, _myTransform.position.z);
                 _atkVisual.transform.localScale = new Vector3(fistPunch.GetRange(), 0.2f, 0.2f);
@@ -94,6 +97,7 @@ public class PlayerController : MonoBehaviour
                 _playerMovement._velocity.x = _playerMovement._isFacingLeft ? -feetPunch.GetForward() : feetPunch.GetForward();
                 feetPunch.Execute();
                 _coolDown = Time.time + feetPunch.GetSpeed();
+
 
                 _atkVisual.SetActive(true);
                 _atkVisual.transform.position = new Vector3(_playerMovement._isFacingLeft ? _myTransform.position.x -feetPunch.GetRange() / 2 : _myTransform.position.x + feetPunch.GetRange() / 2, _myTransform.position.y, _myTransform.position.z);

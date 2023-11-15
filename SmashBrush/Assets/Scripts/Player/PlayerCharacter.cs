@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerCharacter : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class PlayerCharacter : MonoBehaviour
     public Transform _spawnPoint3;
     public Transform _spawnPoint4;
     private Vector3 _actualSpawnPoint;
+    public int _gameOverScene;
     private void Awake()
     {
         _spawnPoint1 = GameObject.Find("SpawnPoint1").transform;
@@ -33,6 +35,8 @@ public class PlayerCharacter : MonoBehaviour
     private void Update()
     {
         _UI.text = "Player " + _playerID + " " + _percent + " %";
+
+
     }
 
     private void CreateUI()
@@ -42,6 +46,7 @@ public class PlayerCharacter : MonoBehaviour
         {
             _actualSpawnPoint = _spawnPoint1.position;
             _UI.GetComponent<RectTransform>().anchoredPosition = new Vector3(-850, 495, 0);
+            _UI.color = Color.blue;
             Camera.main.GetComponent<CameraMovement>()._nbPlayer = 1;
             _playerID = 1;
 
@@ -52,6 +57,7 @@ public class PlayerCharacter : MonoBehaviour
         {
             _actualSpawnPoint = _spawnPoint2.position;
             _UI.GetComponent<RectTransform>().anchoredPosition = new Vector3(890, 495, 0);
+            _UI.color = Color.red;
             Camera.main.GetComponent<CameraMovement>()._nbPlayer = 2;
             _playerID = 2;
 
@@ -61,6 +67,7 @@ public class PlayerCharacter : MonoBehaviour
         {
             _actualSpawnPoint = _spawnPoint3.position;
             _UI.GetComponent<RectTransform>().anchoredPosition = new Vector3(-850, -470, 0);
+            _UI.color = Color.yellow;
             Camera.main.GetComponent<CameraMovement>()._nbPlayer = 3;
             _playerID = 3;
 
@@ -70,6 +77,7 @@ public class PlayerCharacter : MonoBehaviour
         {
             _actualSpawnPoint = _spawnPoint4.position;
             _UI.GetComponent<RectTransform>().anchoredPosition = new Vector3(890, -470, 0);
+            _UI.color = Color.green;
             Camera.main.GetComponent<CameraMovement>()._nbPlayer = 4;
             _playerID = 4;
 
@@ -91,6 +99,16 @@ public class PlayerCharacter : MonoBehaviour
         {
             Debug.Log(_myTransform.position);
             _lifes--;
+            if (_lifes == 0)
+            {
+                Camera.main.GetComponent<CameraMovement>()._nbPlayer -= 1;
+                Destroy(gameObject);
+            }
+            if (Camera.main.GetComponent<CameraMovement>()._nbPlayer == 1)
+            {
+                PlayerPrefs.SetString("Player", _playerID.ToString());
+                SceneManager.LoadScene(_gameOverScene);
+            }
             SpawnPlayer(_actualSpawnPoint);
         }
         else
