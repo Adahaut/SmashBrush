@@ -47,6 +47,8 @@ public class CameraMovement : MonoBehaviour
             float newZoom = Mathf.Lerp(_maxZoom, _minZoom, GetGreatestDistance() / _zoomLimit);
             _cam.fieldOfView = Mathf.Lerp(_cam.fieldOfView, newZoom, Time.deltaTime);
         }
+
+        
     }
 
     private Vector3 GetCenterPoint()
