@@ -78,7 +78,7 @@ public class PlayerController : MonoBehaviour
                 _atkVisual.SetActive(true);
                 _atkVisual.transform.position = new Vector3(_playerMovement._isFacingLeft ? _myTransform.position.x - fistPunch.GetRange() / 2 : _myTransform.position.x + fistPunch.GetRange() / 2, _myTransform.position.y, _myTransform.position.z);
                 _atkVisual.transform.localScale = new Vector3(fistPunch.GetRange(), 0.2f, 0.2f);
-                StartCoroutine(AttackAnimation(fistPunch.GetSpeed()));
+                StartCoroutine(AttackAnimation(0.3f));
             }
         }
 
@@ -98,7 +98,7 @@ public class PlayerController : MonoBehaviour
                 _atkVisual.SetActive(true);
                 _atkVisual.transform.position = new Vector3(_playerMovement._isFacingLeft ? _myTransform.position.x -feetPunch.GetRange() / 2 : _myTransform.position.x + feetPunch.GetRange() / 2, _myTransform.position.y, _myTransform.position.z);
                 _atkVisual.transform.localScale = new Vector3(feetPunch.GetRange(), 0.2f, 0.2f);
-                StartCoroutine(AttackAnimation(feetPunch.GetSpeed()));
+                StartCoroutine(AttackAnimation(0.3f));
             }
         }
 
