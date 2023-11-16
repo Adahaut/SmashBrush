@@ -6,7 +6,7 @@ public class FeetPunch : Attack
     public FeetPunch(Vector3 pos, bool direction)
     {
         m_damage = 5;
-        m_range = 2f;
+        m_range = 3f;
         m_speed = 1f;
         m_stun = 0.5f;
         m_recoil = 20f;
