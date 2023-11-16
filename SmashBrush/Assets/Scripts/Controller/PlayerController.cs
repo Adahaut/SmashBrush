@@ -1,13 +1,12 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private GameObject _atkVisual;
+    [SerializeField] private GameObject _bodyPart;
+
     private PlayerMovement _playerMovement;
-    private Animator _animator;
 
     private Transform _myTransform;
     private float _coolDown;
@@ -19,12 +18,10 @@ public class PlayerController : MonoBehaviour
     {
         _playerMovement = GetComponent<PlayerMovement>();
         _myTransform = _playerMovement.GetComponentInParent<Transform>();
-        _animator = GetComponentInChildren<Animator>();
         _coolDown = 0f;
         _isStun = false;
 
         _panel = Camera.main.GetComponent<CameraMovement>()._panel;
-        _atkVisual.SetActive(false);
     }
 
     private void Update()
@@ -77,11 +74,7 @@ public class PlayerController : MonoBehaviour
                 fistPunch.Execute();
                 _coolDown = Time.time + fistPunch.GetSpeed();
 
-
-                _atkVisual.SetActive(true);
-                _atkVisual.transform.position = new Vector3(_playerMovement._isFacingLeft ? _myTransform.position.x - fistPunch.GetRange() / 2 : _myTransform.position.x + fistPunch.GetRange() / 2, _myTransform.position.y, _myTransform.position.z);
-                _atkVisual.transform.localScale = new Vector3(fistPunch.GetRange(), 0.2f, 0.2f);
-                StartCoroutine(AttackAnimation(0.3f));
+                StartCoroutine(_bodyPart.GetComponent<PlayerAnimation>().FistAnimation(_playerMovement._isFacingLeft, _myTransform.position, fistPunch.GetRange()));
             }
         }
 
@@ -98,11 +91,7 @@ public class PlayerController : MonoBehaviour
                 feetPunch.Execute();
                 _coolDown = Time.time + feetPunch.GetSpeed();
 
-
-                _atkVisual.SetActive(true);
-                _atkVisual.transform.position = new Vector3(_playerMovement._isFacingLeft ? _myTransform.position.x -feetPunch.GetRange() / 2 : _myTransform.position.x + feetPunch.GetRange() / 2, _myTransform.position.y, _myTransform.position.z);
-                _atkVisual.transform.localScale = new Vector3(feetPunch.GetRange(), 0.2f, 0.2f);
-                StartCoroutine(AttackAnimation(0.3f));
+                StartCoroutine(_bodyPart.GetComponent<PlayerAnimation>().FootAnimation(_playerMovement._isFacingLeft, _myTransform.position, feetPunch.GetRange()));
             }
         }
 
@@ -123,12 +112,5 @@ public class PlayerController : MonoBehaviour
                 _panel.SetActive(false);
             }
         }
-    }
-
-    private IEnumerator AttackAnimation(float speed)
-    {
-        yield return new WaitForSeconds(speed);
-
-        _atkVisual.SetActive(false);
     }
 }
