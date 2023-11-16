@@ -18,6 +18,7 @@ public class PlayerAnimation : MonoBehaviour
     public IEnumerator FistAnimation(bool facingLeft, Vector3 pos, float range)
     {
         _fist.GetComponent<MeshRenderer>().enabled = true;
+        _fist.GetComponent<TrailRenderer>().enabled = true;
 
         float time = 0;
         Vector3 targetPos = facingLeft ? pos - new Vector3(range, 0, 0) : pos + new Vector3(range, 0, 0);
@@ -45,10 +46,12 @@ public class PlayerAnimation : MonoBehaviour
         _fist.transform.position = _myTransform.position;
 
         _fist.GetComponent<MeshRenderer>().enabled = false;
+        _fist.GetComponent<TrailRenderer>().enabled = false;
     }
 
     public IEnumerator FootAnimation(bool facingLeft, Vector3 pos, float range)
     {
+        _foot.GetComponent<TrailRenderer>().enabled = true;
         _foot.GetComponent<MeshRenderer>().enabled = true;
 
         float time = 0;
@@ -79,5 +82,6 @@ public class PlayerAnimation : MonoBehaviour
         _foot.transform.position = _myTransform.position - new Vector3(0, 0.7f, 0);
 
         _foot.GetComponent<MeshRenderer>().enabled = false;
+        _foot.GetComponent<TrailRenderer>().enabled = false;
     }
 }
