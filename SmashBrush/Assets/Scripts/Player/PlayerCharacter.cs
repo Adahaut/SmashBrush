@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,6 +10,7 @@ public class PlayerCharacter : MonoBehaviour
     private int _playerID;
     private Transform _myTransform;
     [SerializeField] private TextMeshProUGUI _playerName;
+    public GameObject _ejectVFX;
 
     public PlayerController _controller;
 
@@ -96,6 +98,8 @@ public class PlayerCharacter : MonoBehaviour
         {
             Debug.Log(_myTransform.position);
             _lifes--;
+            GameObject a = Instantiate(_ejectVFX, _myTransform.position, Quaternion.identity);
+            a.GetComponent<ParticleSystem>().Play();
             if (_lifes == 0)
             {
                 Camera.main.GetComponent<CameraMovement>()._nbPlayer -= 1;
@@ -106,7 +110,7 @@ public class PlayerCharacter : MonoBehaviour
                 PlayerPrefs.SetString("Player", _playerID.ToString());
                 SceneManager.LoadScene(_gameOverScene);
             }
-            SpawnPlayer(_actualSpawnPoint);
+            StartCoroutine(destroyA(a));
         }
         else
         {
@@ -119,6 +123,13 @@ public class PlayerCharacter : MonoBehaviour
         _myTransform.position = pos;
         GetComponent<PlayerMovement>()._velocity = Vector2.zero;
         _percent = 0;
+    }
+
+    private IEnumerator destroyA(GameObject a)
+    {
+            yield return new WaitForSeconds(2);
+            Destroy(a);
+            SpawnPlayer(_actualSpawnPoint);
     }
 
 }
