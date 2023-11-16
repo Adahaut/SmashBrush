@@ -26,6 +26,9 @@ public class PlayerMovement : MonoBehaviour
 
     private GameObject _playerBody;
 
+    private bool _isEjected;
+    private float _ejectTimer = 0;
+
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
@@ -41,18 +44,37 @@ public class PlayerMovement : MonoBehaviour
         {
             _velocity.y -= _gravityAcceleration * Time.deltaTime;
         }
+
+        if (IsGrounded() && _isEjected && !gameObject.GetComponent<PlayerController>()._isStun)
+        {
+            if (_ejectTimer > 0)
+            {
+                _ejectTimer -= Time.deltaTime;
+            }
+            else
+            {
+                _isEjected = false;
+            }
+        }
     }
 
     private void FixedUpdate()
     {
-        //Physics.IgnoreLayerCollision(7, 6, _velocity.y > 0 || !IsGrounded() && _velocity.y < 0);
-
         if (Physics.Raycast(_myTransform.position + (_myTransform.localScale / 2), Vector3.up, out RaycastHit hitInfo, 0.5f))
         {
             Physics.IgnoreCollision(_myTransform.GetComponent<Collider>(), hitInfo.collider, hitInfo.collider.tag == "Platform");
         }
 
-        _rb.velocity = _velocity;
+        if (_direction == Vector2.zero && !_isEjected)
+        {
+            Debug.Log(gameObject.GetComponent<PlayerController>()._isStun);
+            _rb.velocity = new Vector3(_rb.velocity.x * 0.8f, _velocity.y);
+            _velocity.x = _rb.velocity.x;
+        }
+        else
+        {
+            _rb.velocity = _velocity;
+        }
     }
 
     public void SetDirection(Vector2 direction)
@@ -74,10 +96,6 @@ public class PlayerMovement : MonoBehaviour
             {
                 _velocity.x = -_maxSpeed;
             }
-        }
-        else
-        {
-            _velocity.x *= Time.deltaTime;
         }
     }
 
@@ -118,5 +136,11 @@ public class PlayerMovement : MonoBehaviour
     public void PlayerRotation()
     {
         _playerBody.transform.Rotate(0, 0, _rotationSpeed * -_rb.velocity.x * Time.deltaTime);
+    }
+
+    public void SetIsEjected()
+    {
+        _isEjected = true;
+        _ejectTimer = 2f;
     }
 }
