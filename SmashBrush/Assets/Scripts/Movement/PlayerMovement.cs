@@ -142,5 +142,7 @@ public class PlayerMovement : MonoBehaviour
     {
         _isEjected = true;
         _ejectTimer = 2f;
+
+        Camera.main.GetComponent<CameraMovement>().SetShake();
     }
 }

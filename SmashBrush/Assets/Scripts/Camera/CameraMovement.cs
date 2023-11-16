@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -24,6 +25,10 @@ public class CameraMovement : MonoBehaviour
 
     private Camera _cam;
 
+    private float _shakeDuration = 0.5f;
+    private float _shakeTimer = 0;
+    private bool _isShaking;
+
     private void Awake()
     {
         Time.timeScale = 1;
@@ -41,14 +46,26 @@ public class CameraMovement : MonoBehaviour
                 Vector3 centerPoint = GetCenterPoint();
                 Vector3 newPosition = centerPoint + _offSet;
 
-                _myTransform.position = Vector3.SmoothDamp(_myTransform.position, newPosition, ref _velocity, _smoothTime);
+                if (!_isShaking)
+                {
+                    _myTransform.position = Vector3.SmoothDamp(_myTransform.position, newPosition, ref _velocity, _smoothTime);
+                }
+                else
+                {
+                    _shakeTimer += Time.deltaTime;
+                    _myTransform.position = new Vector3(newPosition.x + Mathf.PerlinNoise(30 * Time.time, 0), newPosition.y + Mathf.PerlinNoise(30 * Time.time, 0), _myTransform.position.z);
+
+                    if (_shakeTimer >= _shakeDuration)
+                    {
+                        _shakeTimer = 0f;
+                        _isShaking = false;
+                    }
+                }
             }
 
             float newZoom = Mathf.Lerp(_maxZoom, _minZoom, GetGreatestDistance() / _zoomLimit);
             _cam.fieldOfView = Mathf.Lerp(_cam.fieldOfView, newZoom, Time.deltaTime);
         }
-
-        
     }
 
     private Vector3 GetCenterPoint()
@@ -111,5 +128,10 @@ public class CameraMovement : MonoBehaviour
     public void OnPlayerLeft(PlayerInput playerInput)
     {
         _targets.Remove(playerInput.transform);
+    }
+
+    public void SetShake()
+    {
+        _isShaking = true;
     }
 }
