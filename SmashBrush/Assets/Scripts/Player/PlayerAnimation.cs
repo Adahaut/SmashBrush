@@ -8,6 +8,13 @@ public class PlayerAnimation : MonoBehaviour
     private float _atkDuration = 0.05f;
     private float _recoilDuration = 0.1f;
 
+    private Transform _myTransform;
+
+    private void Awake()
+    {
+        _myTransform = transform;
+    }
+
     public IEnumerator FistAnimation(bool facingLeft, Vector3 pos, float range)
     {
         _fist.GetComponent<MeshRenderer>().enabled = true;
@@ -29,13 +36,13 @@ public class PlayerAnimation : MonoBehaviour
 
         while (time < _recoilDuration)
         {
-            _fist.transform.position = Vector3.Lerp(targetPos, pos, time / _recoilDuration);
+            _fist.transform.position = Vector3.Lerp(targetPos, _myTransform.position, time / _recoilDuration);
             time += Time.deltaTime;
 
             yield return null;
         }
 
-        _fist.transform.position = pos;
+        _fist.transform.position = _myTransform.position;
 
         _fist.GetComponent<MeshRenderer>().enabled = false;
     }
@@ -63,13 +70,13 @@ public class PlayerAnimation : MonoBehaviour
 
         while (time < _recoilDuration)
         {
-            _foot.transform.position = Vector3.Lerp(targetPos, startPos, time / _recoilDuration);
+            _foot.transform.position = Vector3.Lerp(targetPos, _myTransform.position - new Vector3(0, 0.7f, 0), time / _recoilDuration);
             time += Time.deltaTime;
 
             yield return null;
         }
 
-        _foot.transform.position = startPos;
+        _foot.transform.position = _myTransform.position - new Vector3(0, 0.7f, 0);
 
         _foot.GetComponent<MeshRenderer>().enabled = false;
     }
