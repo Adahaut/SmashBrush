@@ -46,6 +46,8 @@ public abstract class Attack
         {
             Debug.Log("eject");
             enemy.GetComponentInParent<PlayerMovement>()._velocity.y = enemy._percent;
+            enemy.GetComponentInParent<PlayerMovement>()._velocity.x = enemy._percent;
+            enemy.GetComponentInParent<PlayerMovement>().SetIsEjected();
         }
         else
         {
