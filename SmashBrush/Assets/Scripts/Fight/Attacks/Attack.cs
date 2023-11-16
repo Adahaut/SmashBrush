@@ -42,7 +42,7 @@ public abstract class Attack
     {
         Debug.Log("Attack : " + m_damage + " damage");
         m_ejectionPercent *= enemy._percent;
-        if (Random.Range(0,100) < m_ejectionPercent)
+        if (Random.Range(0, 100) < m_ejectionPercent)
         {
             Debug.Log("eject");
             enemy.GetComponentInParent<PlayerMovement>()._velocity.y = enemy._percent;
