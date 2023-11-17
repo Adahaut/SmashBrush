@@ -69,6 +69,7 @@ public class PlayerController : MonoBehaviour
         {
             if (ctx.started && Time.time > _coolDown)
             {
+                GetComponent<AudioSource>().Play();
                 FistPunch fistPunch = new(_myTransform.position, _playerMovement._isFacingLeft);
                 _playerMovement._velocity.x = _playerMovement._isFacingLeft ? -fistPunch.GetForward() : fistPunch.GetForward();
                 fistPunch.Execute();
@@ -86,6 +87,7 @@ public class PlayerController : MonoBehaviour
         {
             if (ctx.started && Time.time > _coolDown)
             {
+                GetComponent<AudioSource>().Play();
                 FeetPunch feetPunch = new(_myTransform.position, _playerMovement._isFacingLeft);
                 _playerMovement._velocity.x = _playerMovement._isFacingLeft ? -feetPunch.GetForward() : feetPunch.GetForward();
                 feetPunch.Execute();

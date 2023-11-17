@@ -29,6 +29,7 @@ public class PlayerCharacter : MonoBehaviour
         _spawnPoint2 = GameObject.Find("SpawnPoint2").transform;
         _spawnPoint3 = GameObject.Find("SpawnPoint3").transform;
         _spawnPoint4 = GameObject.Find("SpawnPoint4").transform;
+        Camera.main.GetComponent<CameraMovement>()._players.Add(this);
         _controller = GetComponent<PlayerController>();
         _myTransform = transform;
         CreateUI();
@@ -116,11 +117,11 @@ public class PlayerCharacter : MonoBehaviour
             if (_lifes == 0)
             {
                 Camera.main.GetComponent<CameraMovement>()._nbPlayer -= 1;
-                Destroy(gameObject);
+                Camera.main.GetComponent<CameraMovement>()._players.Remove(this);
             }
             if (Camera.main.GetComponent<CameraMovement>()._nbPlayer == 1)
             {
-                PlayerPrefs.SetString("Player", _playerID.ToString());
+                PlayerPrefs.SetString("Player", Camera.main.GetComponent<CameraMovement>()._players[0]._playerID.ToString());
                 SceneManager.LoadScene(_gameOverScene);
             }
             StartCoroutine(destroyA(a));
@@ -142,7 +143,14 @@ public class PlayerCharacter : MonoBehaviour
     {
             yield return new WaitForSeconds(2);
             Destroy(a);
+        if (_lifes != 0)
+        {
             SpawnPlayer(_actualSpawnPoint);
+        }
+        else if(_lifes == 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
 }

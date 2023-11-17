@@ -9,6 +9,7 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] private Vector3 _offSet;
     public GameObject _panel;
 
+    public List<PlayerCharacter> _players;
     public int _nbPlayer = 0;
 
     private Vector3 _velocity;
@@ -31,6 +32,7 @@ public class CameraMovement : MonoBehaviour
 
     private void Awake()
     {
+        _players = new List<PlayerCharacter>();
         Time.timeScale = 1;
         _targets.Clear();
         _myTransform = transform;
