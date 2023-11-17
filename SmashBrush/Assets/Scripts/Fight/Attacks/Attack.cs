@@ -40,11 +40,11 @@ public abstract class Attack
 
     public virtual void AttackEnnemi(PlayerCharacter enemy)
     {
-        Debug.Log("Attack : " + m_damage + " damage");
+        //Debug.Log("Attack : " + m_damage + " damage");
         m_ejectionPercent *= enemy._percent;
         if (Random.Range(0, 100) < m_ejectionPercent)
         {
-            Debug.Log("eject");
+            //Debug.Log("eject");
             enemy.GetComponentInParent<PlayerMovement>()._velocity.y = enemy._percent;
             enemy.GetComponentInParent<PlayerMovement>()._velocity.x = m_direction ? Random.Range(-50, -100) : Random.Range(50,100);
             enemy.GetComponentInParent<PlayerMovement>().SetIsEjected();
@@ -54,7 +54,7 @@ public abstract class Attack
             enemy.GetComponentInChildren<ParticleSystem>().Play();
             enemy._percent += m_damage;
             enemy.GetComponentInParent<PlayerMovement>()._velocity.y = 10;
-            enemy.transform.Translate(new Vector2(m_direction ? -m_recoil : m_recoil, 0) * Time.deltaTime * 3);
+            enemy.GetComponentInParent<PlayerMovement>()._velocity.x = m_direction ? -m_recoil : m_recoil;
             enemy._controller._isStun = true;
             enemy._controller._stunTime = Time.time + m_stun;
         }

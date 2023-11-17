@@ -9,7 +9,7 @@ public class FistPunch : Attack
         m_range = 2.5f;
         m_speed = 0.4f;
         m_stun = 0.2f;
-        m_recoil = 7f;
+        m_recoil = 3f;
         m_forward = 0.5f;
         m_position = pos;
         m_direction = direction;

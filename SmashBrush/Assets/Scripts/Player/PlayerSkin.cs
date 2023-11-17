@@ -22,7 +22,7 @@ public class PlayerSkin : MonoBehaviour
         {
             if (_skins.Count > 0)
             {
-                Debug.Log(Camera.main.GetComponent<CameraMovement>()._nbPlayer - 1);
+                //Debug.Log(Camera.main.GetComponent<CameraMovement>()._nbPlayer - 1);
                 _currentSkin = _skins[Camera.main.GetComponent<CameraMovement>()._nbPlayer - 1];
                 _currentLineColor = _lineColors[Camera.main.GetComponent<CameraMovement>()._nbPlayer - 1];
             }

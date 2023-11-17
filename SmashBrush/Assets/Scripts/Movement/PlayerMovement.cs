@@ -38,8 +38,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        Move();
+        if (!GetComponent<PlayerController>()._isStun)
+        {
+            Move();
+        }
+
         PlayerRotation();
+
         if (!IsGrounded())
         {
             _velocity.y -= _gravityAcceleration * Time.deltaTime;
@@ -65,9 +70,9 @@ public class PlayerMovement : MonoBehaviour
             Physics.IgnoreCollision(_myTransform.GetComponent<Collider>(), hitInfo.collider, hitInfo.collider.tag == "Platform");
         }
 
-        if (_direction == Vector2.zero && !_isEjected)
+        if (_direction == Vector2.zero && !_isEjected && !GetComponent<PlayerController>()._isStun)
         {
-            Debug.Log(gameObject.GetComponent<PlayerController>()._isStun);
+            //Debug.Log(gameObject.GetComponent<PlayerController>()._isStun);
             _rb.velocity = new Vector3(_rb.velocity.x * 0.8f, _velocity.y);
             _velocity.x = _rb.velocity.x;
         }
@@ -142,7 +147,5 @@ public class PlayerMovement : MonoBehaviour
     {
         _isEjected = true;
         _ejectTimer = 2f;
-
-        Camera.main.GetComponent<CameraMovement>().SetShake();
     }
 }
