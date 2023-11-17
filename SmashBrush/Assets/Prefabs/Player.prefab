@@ -714,7 +714,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
@@ -738,7 +738,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   _acceleration: 100
-  _maxSpeed: 7
+  _maxSpeed: 14
   _dampFactor: 0.9
   _isFacingLeft: 0
   _velocity: {x: 0, y: 0}

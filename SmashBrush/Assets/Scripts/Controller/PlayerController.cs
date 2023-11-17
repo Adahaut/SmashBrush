@@ -33,17 +33,14 @@ public class PlayerController : MonoBehaviour
     }
     public void OnMoveCharacter(InputAction.CallbackContext context)
     {
-        if (!_isStun)
+        if (context.performed)
         {
-            if (context.performed)
-            {
-                _playerMovement.SetDirection(context.ReadValue<Vector2>());
-                _playerMovement._isFacingLeft = context.ReadValue<Vector2>().x < 0 ? true : false;
-            }
-            else
-            {
-                _playerMovement.SetDirection(Vector2.zero);
-            }
+            _playerMovement.SetDirection(context.ReadValue<Vector2>());
+            _playerMovement._isFacingLeft = context.ReadValue<Vector2>().x < 0 ? true : false;
+        }
+        else
+        {
+            _playerMovement.SetDirection(Vector2.zero);
         }
     }
 

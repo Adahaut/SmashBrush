@@ -9,7 +9,7 @@ public class FeetPunch : Attack
         m_range = 3f;
         m_speed = 1f;
         m_stun = 0.5f;
-        m_recoil = 20f;
+        m_recoil = 10f;
         m_forward = 2f;
         m_position = pos;
         m_direction = direction;

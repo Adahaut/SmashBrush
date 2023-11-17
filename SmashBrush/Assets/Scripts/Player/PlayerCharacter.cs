@@ -107,8 +107,10 @@ public class PlayerCharacter : MonoBehaviour
     {
         if (collision.transform.gameObject.tag == "WorldEdges")
         {
-            Debug.Log(_myTransform.position);
+            //Debug.Log(_myTransform.position);
             _lifes--;
+
+            Camera.main.GetComponent<CameraMovement>().SetShake();
 
             _lifeUI.transform.GetChild(_lifes).gameObject.SetActive(false);
 
@@ -141,7 +143,7 @@ public class PlayerCharacter : MonoBehaviour
 
     private IEnumerator destroyA(GameObject a)
     {
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(0.5f);
             Destroy(a);
         if (_lifes != 0)
         {

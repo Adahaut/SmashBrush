@@ -27,7 +27,7 @@ public class CameraMovement : MonoBehaviour
     private Camera _cam;
 
     private float _shakeDuration = 0.5f;
-    private float _shakeTimer = 0;
+
     private bool _isShaking;
 
     private void Awake()
@@ -43,25 +43,27 @@ public class CameraMovement : MonoBehaviour
     {
         if (_targets.Count > 0)
         {
-            if (GetFurthestPlayer() <= 15f)
-            {
-                Vector3 centerPoint = GetCenterPoint();
-                Vector3 newPosition = centerPoint + _offSet;
+            Vector3 centerPoint = GetCenterPoint();
+            Vector3 newPosition = centerPoint + _offSet;
 
+            if (GetFurthestPlayer() <= 20f)
+            {
                 if (!_isShaking)
                 {
                     _myTransform.position = Vector3.SmoothDamp(_myTransform.position, newPosition, ref _velocity, _smoothTime);
                 }
                 else
                 {
-                    _shakeTimer += Time.deltaTime;
                     _myTransform.position = new Vector3(newPosition.x + Mathf.PerlinNoise(30 * Time.time, 0), newPosition.y + Mathf.PerlinNoise(30 * Time.time, 0), _myTransform.position.z);
-
-                    if (_shakeTimer >= _shakeDuration)
-                    {
-                        _shakeTimer = 0f;
-                        _isShaking = false;
-                    }
+                    StartCoroutine(ShakeCamera(_shakeDuration));
+                }
+            }
+            else
+            {
+                if (_isShaking)
+                {
+                    _myTransform.position = new Vector3(newPosition.x + Mathf.PerlinNoise(30 * Time.time, 0), newPosition.y + Mathf.PerlinNoise(30 * Time.time, 0), _myTransform.position.z);
+                    StartCoroutine(ShakeCamera(_shakeDuration));
                 }
             }
 
@@ -123,7 +125,7 @@ public class CameraMovement : MonoBehaviour
 
     public void OnPlayerJoined(PlayerInput playerInput)
     {
-        Debug.Log("player joined");
+        //Debug.Log("player joined");
         _targets.Add(playerInput.transform);
     }
 
@@ -135,5 +137,12 @@ public class CameraMovement : MonoBehaviour
     public void SetShake()
     {
         _isShaking = true;
+    }
+
+    public IEnumerator ShakeCamera(float time)
+    {
+        yield return new WaitForSeconds(time);
+
+        _isShaking = false;
     }
 }
