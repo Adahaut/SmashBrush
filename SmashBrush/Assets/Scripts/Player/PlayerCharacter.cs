@@ -2,6 +2,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerCharacter : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class PlayerCharacter : MonoBehaviour
     public PlayerController _controller;
 
     public TextMeshProUGUI _UI;
+    public GameObject _lifeUI;
     public Transform _spawnPoint1;
     public Transform _spawnPoint2;
     public Transform _spawnPoint3;
@@ -44,6 +46,8 @@ public class PlayerCharacter : MonoBehaviour
     private void CreateUI()
     {
         _UI = Instantiate(_UI, GameObject.Find("Canvas").transform);
+        _lifeUI = Instantiate(_lifeUI, GameObject.Find("Canvas").transform);
+        _lifeUI.transform.SetParent(_UI.transform);
         if (Camera.main.GetComponent<CameraMovement>()._nbPlayer == 0)
         {
             _actualSpawnPoint = _spawnPoint1.position;
@@ -57,7 +61,7 @@ public class PlayerCharacter : MonoBehaviour
         else if (Camera.main.GetComponent<CameraMovement>()._nbPlayer == 1)
         {
             _actualSpawnPoint = _spawnPoint2.position;
-            _UI.GetComponent<RectTransform>().anchoredPosition = new Vector3(890, 495, 0);
+            _UI.GetComponent<RectTransform>().anchoredPosition = new Vector3(850, 495, 0);
             Camera.main.GetComponent<CameraMovement>()._nbPlayer = 2;
             _playerID = 2;
 
@@ -66,7 +70,7 @@ public class PlayerCharacter : MonoBehaviour
         else if (Camera.main.GetComponent<CameraMovement>()._nbPlayer == 2)
         {
             _actualSpawnPoint = _spawnPoint3.position;
-            _UI.GetComponent<RectTransform>().anchoredPosition = new Vector3(-850, -450, 0);
+            _UI.GetComponent<RectTransform>().anchoredPosition = new Vector3(-850, -400, 0);
             Camera.main.GetComponent<CameraMovement>()._nbPlayer = 3;
             _playerID = 3;
 
@@ -75,12 +79,13 @@ public class PlayerCharacter : MonoBehaviour
         else if (Camera.main.GetComponent<CameraMovement>()._nbPlayer == 3)
         {
             _actualSpawnPoint = _spawnPoint4.position;
-            _UI.GetComponent<RectTransform>().anchoredPosition = new Vector3(890, -450, 0);
+            _UI.GetComponent<RectTransform>().anchoredPosition = new Vector3(850, -400, 0);
             Camera.main.GetComponent<CameraMovement>()._nbPlayer = 4;
             _playerID = 4;
 
             SetNamePlate("Player 4", Color.green);
         }
+        _lifeUI.GetComponent<RectTransform>().anchoredPosition = Vector2.down * 80f;
         _UI.text = "Player " + _playerID + " " + _percent + " %";
     }
 
@@ -89,6 +94,11 @@ public class PlayerCharacter : MonoBehaviour
         _playerName.text = name;
         _playerName.color = color;
         _UI.color = color;
+
+        foreach (Transform child in _lifeUI.transform)
+        {
+            child.gameObject.GetComponent<Image>().color = color;
+        }
     }
 
 
@@ -98,6 +108,9 @@ public class PlayerCharacter : MonoBehaviour
         {
             Debug.Log(_myTransform.position);
             _lifes--;
+
+            _lifeUI.transform.GetChild(_lifes).gameObject.SetActive(false);
+
             GameObject a = Instantiate(_ejectVFX, _myTransform.position, Quaternion.identity);
             a.GetComponent<ParticleSystem>().Play();
             if (_lifes == 0)

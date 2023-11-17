@@ -759,6 +759,7 @@ MonoBehaviour:
   _ejectVFX: {fileID: 1799332239858732, guid: f954d80d3b33b6940ba36a67405b1aa6, type: 3}
   _controller: {fileID: 0}
   _UI: {fileID: 3106247349132411918, guid: c88e669bb5fcc7f46add594534fd4a6f, type: 3}
+  _lifeUI: {fileID: 8675598217334437576, guid: 63f2dd1ec46460e4ab20c9f17587fbf5, type: 3}
   _spawnPoint1: {fileID: 0}
   _spawnPoint2: {fileID: 0}
   _spawnPoint3: {fileID: 0}
