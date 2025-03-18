@@ -1,0 +1,4 @@
+vendor/** linguist-vendored
+libs/** linguist-vendored
+
+*.cs linguist-detectable=true
